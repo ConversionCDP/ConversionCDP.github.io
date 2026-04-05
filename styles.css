@@ -494,6 +494,192 @@ section {
 }
 
 /* =============================
+   CERTIFICATIONS
+   ============================= */
+#certs {
+  background: var(--bg-2);
+  position: relative;
+  overflow: hidden;
+}
+
+#certs::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 195, 247, 0.06) 0%, transparent 70%);
+  top: -100px;
+  left: -80px;
+  pointer-events: none;
+  animation: drift-b 20s ease-in-out infinite;
+}
+
+#certs::after {
+  content: '';
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.05) 0%, transparent 70%);
+  bottom: -60px;
+  right: 5%;
+  pointer-events: none;
+  animation: drift-a 17s ease-in-out infinite;
+}
+
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2.5rem;
+}
+
+.cert-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.cert-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.cert-card:hover {
+  border-color: var(--accent-dim);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 35px rgba(0,0,0,0.35);
+  background: var(--card-hover);
+}
+
+.cert-card:hover::before {
+  opacity: 1;
+}
+
+.cert-card--featured::before {
+  background: linear-gradient(90deg, var(--pink), transparent);
+}
+
+.cert-card--featured:hover {
+  border-color: var(--pink-dim);
+  box-shadow: 0 10px 35px rgba(0,0,0,0.35), 0 0 20px var(--pink-glow);
+}
+
+.cert-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cert-logo svg {
+  width: 26px;
+  height: 26px;
+}
+
+.cert-logo--gcp {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.cert-logo--comptia {
+  background: var(--bg-3);
+  color: var(--text-muted);
+}
+
+.cert-logo--security {
+  background: var(--pink-dim);
+  color: var(--pink);
+}
+
+.cert-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.cert-issuer {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+}
+
+.cert-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cert-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  margin-top: 0.1rem;
+}
+
+.cert-status--active {
+  color: #4ade80;
+}
+
+.cert-status--pink {
+  color: var(--pink);
+}
+
+.cert-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+  animation: cert-pulse 2.5s ease-in-out infinite;
+}
+
+.cert-dot--pink {
+  background: var(--pink);
+}
+
+@keyframes cert-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* Resume link variant */
+.about-link--resume {
+  border-color: var(--accent-dim);
+  color: var(--accent);
+}
+
+.about-link--resume:hover {
+  background: var(--accent-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* =============================
    SKILLS
    ============================= */
 #skills {
