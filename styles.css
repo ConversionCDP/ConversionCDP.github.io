@@ -17,6 +17,9 @@
   --accent:      #4fc3f7;
   --accent-dim:  #1a4a6b;
   --accent-glow: rgba(79, 195, 247, 0.15);
+  --pink:        #f472b6;
+  --pink-dim:    #5a1e3a;
+  --pink-glow:   rgba(244, 114, 182, 0.15);
   --text:        #e2e8f0;
   --text-muted:  #8899aa;
   --text-dim:    #556070;
@@ -48,7 +51,8 @@ a {
 /* =============================
    UTILITY
    ============================= */
-.accent { color: var(--accent); }
+.accent      { color: var(--accent); }
+.accent-pink { color: var(--pink); }
 
 .section-inner {
   max-width: 1100px;
@@ -356,10 +360,55 @@ section {
 }
 
 /* =============================
+   ANIMATED BACKGROUND ORBS
+   ============================= */
+@keyframes drift-a {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(40px, -30px) scale(1.05); }
+  66%  { transform: translate(-25px, 20px) scale(0.97); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes drift-b {
+  0%   { transform: translate(0, 0) scale(1); }
+  33%  { transform: translate(-35px, 25px) scale(1.04); }
+  66%  { transform: translate(30px, -15px) scale(0.98); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+/* =============================
    ABOUT
    ============================= */
 #about {
   background: var(--bg-2);
+  position: relative;
+  overflow: hidden;
+}
+
+#about::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 195, 247, 0.07) 0%, transparent 70%);
+  top: -100px;
+  right: -100px;
+  pointer-events: none;
+  animation: drift-a 18s ease-in-out infinite;
+}
+
+#about::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.05) 0%, transparent 70%);
+  bottom: -80px;
+  left: 10%;
+  pointer-events: none;
+  animation: drift-b 22s ease-in-out infinite;
 }
 
 .about-grid {
@@ -449,6 +498,35 @@ section {
    ============================= */
 #skills {
   background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+#skills::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.06) 0%, transparent 70%);
+  top: 50%;
+  left: -100px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  animation: drift-a 20s ease-in-out infinite;
+}
+
+#skills::after {
+  content: '';
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 195, 247, 0.05) 0%, transparent 70%);
+  bottom: -60px;
+  right: 5%;
+  pointer-events: none;
+  animation: drift-b 16s ease-in-out infinite;
 }
 
 .skills-grid {
@@ -512,6 +590,34 @@ section {
    ============================= */
 #projects {
   background: var(--bg-2);
+  position: relative;
+  overflow: hidden;
+}
+
+#projects::before {
+  content: '';
+  position: absolute;
+  width: 550px;
+  height: 550px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 195, 247, 0.06) 0%, transparent 70%);
+  top: -80px;
+  left: -80px;
+  pointer-events: none;
+  animation: drift-b 24s ease-in-out infinite;
+}
+
+#projects::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.05) 0%, transparent 70%);
+  bottom: -60px;
+  right: -60px;
+  pointer-events: none;
+  animation: drift-a 19s ease-in-out infinite;
 }
 
 .projects-grid {
@@ -611,10 +717,121 @@ section {
 }
 
 /* =============================
+   HOBBIES
+   ============================= */
+#hobbies {
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+#hobbies::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.07) 0%, transparent 70%);
+  top: -120px;
+  right: -100px;
+  pointer-events: none;
+  animation: drift-b 21s ease-in-out infinite;
+}
+
+#hobbies::after {
+  content: '';
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 195, 247, 0.05) 0%, transparent 70%);
+  bottom: -60px;
+  left: 5%;
+  pointer-events: none;
+  animation: drift-a 17s ease-in-out infinite;
+}
+
+.hobbies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.hobby-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.hobby-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--pink), transparent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.hobby-card:hover {
+  border-color: var(--pink-dim);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 20px var(--pink-glow);
+  background: var(--card-hover);
+}
+
+.hobby-card:hover::before {
+  opacity: 1;
+}
+
+.hobby-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.hobby-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.hobby-desc {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* =============================
    CONTACT
    ============================= */
 #contact {
-  background: var(--bg);
+  background: var(--bg-2);
+  position: relative;
+  overflow: hidden;
+}
+
+#contact::before {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 195, 247, 0.06) 0%, transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: drift-a 25s ease-in-out infinite;
 }
 
 .contact-inner {
@@ -651,6 +868,16 @@ section {
   border-color: var(--accent);
   transform: translateY(-4px);
   box-shadow: 0 8px 30px var(--accent-glow);
+}
+
+.contact-card:nth-child(2):hover {
+  border-color: var(--pink);
+  box-shadow: 0 8px 30px var(--pink-glow);
+}
+
+.contact-card:nth-child(2):hover .contact-icon {
+  background: var(--pink-dim);
+  color: var(--pink);
 }
 
 .contact-icon {
@@ -694,7 +921,7 @@ section {
    FOOTER
    ============================= */
 footer {
-  background: var(--bg-2);
+  background: var(--bg);
   border-top: 1px solid var(--border);
   text-align: center;
   padding: 2.5rem 2rem;
